@@ -1,17 +1,7 @@
 <div class="sign-up-form">
-  <h2>Create an Account</h2>
+  <h2>Log Into Your Account</h2>
 
   <form [formGroup]="form" (submit)="onSubmit()">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input
-        id="username"
-        type="text"
-        formControlName="username"
-        placeholder="e.g. johndoe22"
-      />
-    </div>
-
     <div class="form-group">
       <label for="email">Email</label>
       <input
@@ -33,11 +23,11 @@
     </div>
 
     <div class="signup-switch">
-      <span>Already have an account?</span>
-      <button type="button" (click)="goToSignIn()">Sign In</button>
+      <span>Don't have an account?</span>
+      <button type="button" (click)="goToSignUp()">Sign Up</button>
     </div>
 
-    <button type="submit" [disabled]="form.invalid || isSigningUp">Sign Up</button>
+    <button type="submit" [disabled]="form.invalid">Sign In</button>
   </form>
 
   @if (errors.length > 0) {

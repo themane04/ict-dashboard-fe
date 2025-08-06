@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
-import {SignUp} from './features/auth/components/sign-up/sign-up';
+import {AUTH_ROUTES} from './features/auth/auth.routes';
 
 export const routes: Routes = [
-  {path: 'sign-up', component: SignUp},
+  ...AUTH_ROUTES,
 ];

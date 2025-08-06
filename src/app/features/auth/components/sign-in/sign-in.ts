@@ -1,38 +1,36 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../core/environment';
 
 @Component({
-  selector: 'app-sign-up',
-  standalone: true,
+  selector: 'app-sign-in',
   imports: [
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
-  templateUrl: './sign-up.html',
-  styleUrl: './sign-up.scss',
+  templateUrl: './sign-in.html',
+  styleUrls: ['./sign-in.scss', '../sign-up/sign-up.scss']
 })
-export class SignUp {
+export class SignIn {
   form: FormGroup;
   errors: { field: string; message: string }[] = [];
-  isSigningUp = false;
+  isSigningIn = false;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
 
-  goToSignIn() {
-    void this.router.navigate([environment.urls.signin]);
+  goToSignUp() {
+    void this.router.navigate([environment.urls.signup]);
   }
 
   onSubmit() {
-    this.isSigningUp = true;
+    this.isSigningIn = true;
     this.errors = [];
 
     if (this.form.invalid) {
@@ -40,16 +38,16 @@ export class SignUp {
       return;
     }
 
-    this.authService.signUp(this.form.value).subscribe({
+    this.authService.signIn(this.form.value).subscribe({
       next: (res) => {
-        this.isSigningUp = false;
+        this.isSigningIn = false;
         this.form.reset();
         this.errors = [];
-        console.log('Registered!', res)
-        void this.router.navigate([environment.urls.signin]);
+        void this.router.navigate([environment.urls.home]);
+        console.log('Logged In!', res)
       },
       error: (err) => {
-        this.isSigningUp = false;
+        this.isSigningIn = false;
         this.errors = err.error?.errors || [{field: 'unknown', message: 'Unexpected error.'}];
       }
     });

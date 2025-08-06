@@ -67,6 +67,34 @@
     }
   }
 
+  .signup-switch {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+
+    span {
+      margin-right: 0.5rem;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: var(--color-link);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      font-size: inherit;
+      transition: color 0.2s;
+
+      &:hover {
+        color: var(--color-link-hover);
+        background-color: transparent;
+      }
+    }
+  }
+
   .error-messages {
     color: var(--color-error);
     background-color: var(--color-error-bg);
