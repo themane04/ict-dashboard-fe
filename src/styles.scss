@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --max-form-width: 400px;
+  --form-padding: 2rem;
+  --form-gap: 1.5rem;
+  --input-padding: 0.6rem 0.8rem;
+  --border-radius: 0.5rem;
+
+  --font-family: 'Segoe UI', sans-serif;
+  --font-size-base: 1rem;
+  --font-size-heading: 1.8rem;
+
+  --color-bg: #fff;
+  --color-text: #222;
+  --color-label: #444;
+  --color-input-border: #ccc;
+  --color-input-border-focus: #007bff;
+  --color-button-bg: #007bff;
+  --color-button-hover: #0056b3;
+  --color-button-disabled: #ccc;
+  --color-error: #d93025;
+  --color-error-bg: #ffeaea;
+}
