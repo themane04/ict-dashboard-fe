@@ -1,4 +1,4 @@
-import {Component, OnInit, signal} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {AuthService} from './features/auth/services/auth.service';
 
@@ -8,8 +8,6 @@ import {AuthService} from './features/auth/services/auth.service';
   templateUrl: './app.html',
 })
 export class App implements OnInit {
-  protected readonly title = signal('ict-dashboard-fe');
-
   constructor(private authService: AuthService) {
   }
 

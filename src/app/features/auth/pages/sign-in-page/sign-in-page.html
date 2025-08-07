@@ -22,10 +22,12 @@
       />
     </div>
 
-    <div class="signup-switch">
-      <span>Don't have an account?</span>
-      <button type="button" (click)="goToSignUp()">Sign Up</button>
-    </div>
+    @if (environment.config.allowSignUp) {
+      <div class="signup-switch">
+        <span>Don't have an account?</span>
+        <button type="button" (click)="goToSignUp()">Sign Up</button>
+      </div>
+    }
 
     <button type="submit" [disabled]="form.invalid">Sign In</button>
   </form>

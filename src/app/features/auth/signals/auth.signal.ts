@@ -10,4 +10,10 @@ export const isCoach = computed(() => _user()?.role === 'Coach');
 
 export const userRole = computed(() => _user()?.role ?? null);
 
-export const setUser = (newUser: SignUpResponse | null) => _user.set(newUser);
+const _authInitialized = signal(false);
+export const authInitialized = _authInitialized.asReadonly();
+
+export const setUser = (newUser: SignUpResponse | null) => {
+  _user.set(newUser)
+  _authInitialized.set(true);
+};

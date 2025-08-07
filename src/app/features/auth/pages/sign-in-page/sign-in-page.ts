@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../core/consts/environment';
-import {setUser} from '../../signals/auth.signal';
 
 @Component({
   selector: 'app-sign-in',
+  standalone: true,
   imports: [
     FormsModule,
     ReactiveFormsModule
@@ -15,6 +15,7 @@ import {setUser} from '../../signals/auth.signal';
   styleUrls: ['./sign-in-page.scss', '../sign-up-page/sign-up-page.scss']
 })
 export class SignIn {
+  protected readonly environment = environment;
   form: FormGroup;
   errors: { field: string; message: string }[] = [];
   isSigningIn = false;
@@ -40,11 +41,10 @@ export class SignIn {
     }
 
     this.authService.signIn(this.form.value).subscribe({
-      next: (response) => {
+      next: () => {
         this.isSigningIn = false;
         this.form.reset();
         this.errors = [];
-        setUser(response.user)
         void this.router.navigate([environment.frontendUrls.dashboard]);
       },
       error: (err) => {
