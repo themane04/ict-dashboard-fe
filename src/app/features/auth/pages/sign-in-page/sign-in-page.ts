@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../core/consts/environment';
+import {setUser} from '../../signals/auth.signal';
 
 @Component({
   selector: 'app-sign-in',
@@ -39,10 +40,11 @@ export class SignIn {
     }
 
     this.authService.signIn(this.form.value).subscribe({
-      next: () => {
+      next: (response) => {
         this.isSigningIn = false;
         this.form.reset();
         this.errors = [];
+        setUser(response.user)
         void this.router.navigate([environment.frontendUrls.dashboard]);
       },
       error: (err) => {
