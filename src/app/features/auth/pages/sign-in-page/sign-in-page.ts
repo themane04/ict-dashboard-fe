@@ -39,12 +39,11 @@ export class SignIn {
     }
 
     this.authService.signIn(this.form.value).subscribe({
-      next: (res) => {
+      next: () => {
         this.isSigningIn = false;
         this.form.reset();
         this.errors = [];
-        void this.router.navigate([environment.frontendUrls.home]);
-        console.log('Logged In!', res)
+        void this.router.navigate([environment.frontendUrls.dashboard]);
       },
       error: (err) => {
         this.isSigningIn = false;

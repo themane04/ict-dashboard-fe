@@ -14,7 +14,8 @@ export class AuthService {
   signIn(data: SignInRequest): Observable<SignInResponse> {
     return this.http.post<SignInResponse>(
       `${environment.backendApiUrl}${environment.backendEndpoints.auth.signin}`,
-      data
+      data,
+      {withCredentials: true}
     );
   }
 

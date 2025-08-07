@@ -1,5 +1,4 @@
 ﻿export interface SignInResponse {
-  token: string;
   user: SignUpResponse;
 }
 

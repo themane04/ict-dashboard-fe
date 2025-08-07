@@ -1,5 +1,5 @@
 ﻿export const urls = {
-  home: 'dashboard',
+  dashboard: 'dashboard',
   signin: 'sign-in',
   signup: 'sign-up'
 }
