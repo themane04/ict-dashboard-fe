@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {environment} from '../../../../core/environment';
+import {environment} from '../../../../core/consts/environment';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,8 +11,8 @@ import {environment} from '../../../../core/environment';
     FormsModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './sign-up.html',
-  styleUrl: './sign-up.scss',
+  templateUrl: './sign-up-page.html',
+  styleUrl: './sign-up-page.scss',
 })
 export class SignUp {
   form: FormGroup;
@@ -28,7 +28,7 @@ export class SignUp {
   }
 
   goToSignIn() {
-    void this.router.navigate([environment.urls.signin]);
+    void this.router.navigate([environment.frontendUrls.signin]);
   }
 
   onSubmit() {
@@ -46,7 +46,7 @@ export class SignUp {
         this.form.reset();
         this.errors = [];
         console.log('Registered!', res)
-        void this.router.navigate([environment.urls.signin]);
+        void this.router.navigate([environment.frontendUrls.signin]);
       },
       error: (err) => {
         this.isSigningUp = false;

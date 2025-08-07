@@ -1,8 +1,8 @@
 ﻿import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {SignInRequest, SignInResponse, SignUpRequest, SignUpResponse} from '../interfaces/auth.interfaces';
+import {SignInRequest, SignInResponse, SignUpRequest, SignUpResponse} from '../interfaces/auth.interface';
 import {Observable} from 'rxjs';
-import {environment} from '../../../core/environment';
+import {environment} from '../../../core/consts/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +13,14 @@ export class AuthService {
 
   signIn(data: SignInRequest): Observable<SignInResponse> {
     return this.http.post<SignInResponse>(
-      `${environment.backendApiUrl}${environment.endpoints.auth.signin}`,
+      `${environment.backendApiUrl}${environment.backendEndpoints.auth.signin}`,
       data
     );
   }
 
   signUp(data: SignUpRequest): Observable<SignUpResponse> {
     return this.http.post<SignUpResponse>(
-      `${environment.backendApiUrl}${environment.endpoints.auth.signup}`,
+      `${environment.backendApiUrl}${environment.backendEndpoints.auth.signup}`,
       data
     );
   }

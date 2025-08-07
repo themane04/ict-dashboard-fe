@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {environment} from '../../../../core/environment';
+import {environment} from '../../../../core/consts/environment';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,8 +10,8 @@ import {environment} from '../../../../core/environment';
     FormsModule,
     ReactiveFormsModule
   ],
-  templateUrl: './sign-in.html',
-  styleUrls: ['./sign-in.scss', '../sign-up/sign-up.scss']
+  templateUrl: './sign-in-page.html',
+  styleUrls: ['./sign-in-page.scss', '../sign-up-page/sign-up-page.scss']
 })
 export class SignIn {
   form: FormGroup;
@@ -26,7 +26,7 @@ export class SignIn {
   }
 
   goToSignUp() {
-    void this.router.navigate([environment.urls.signup]);
+    void this.router.navigate([environment.frontendUrls.signup]);
   }
 
   onSubmit() {
@@ -43,7 +43,7 @@ export class SignIn {
         this.isSigningIn = false;
         this.form.reset();
         this.errors = [];
-        void this.router.navigate([environment.urls.home]);
+        void this.router.navigate([environment.frontendUrls.home]);
         console.log('Logged In!', res)
       },
       error: (err) => {
