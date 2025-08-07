@@ -9,16 +9,27 @@
   --font-size-base: 1rem;
   --font-size-heading: 1.8rem;
 
-  --color-link: #007bff;
-  --color-link-hover: #0056b3;
-  --color-bg: #fff;
-  --color-text: #222;
-  --color-label: #444;
-  --color-input-border: #ccc;
-  --color-input-border-focus: #007bff;
-  --color-button-bg: #007bff;
-  --color-button-hover: #0056b3;
-  --color-button-disabled: #ccc;
+  --color-post-yellow: #ffc722;
+  --color-post-red: #ff0000;
+  --color-post-black: #000000;
+
+  --color-bg: #fffce6;
+  --color-text: var(--color-post-black);
+  --color-label: #333333;
+  --color-input-border: #cccccc;
+  --color-input-border-focus: var(--color-post-red);
+
+  --color-button-bg: var(--color-post-red);
+  --color-button-hover: #cc0000;
+  --color-button-disabled: #f0f0f0;
+
+  --color-link: var(--color-post-red);
+  --color-link-hover: #cc0000;
+
   --color-error: #d93025;
   --color-error-bg: #ffeaea;
+}
+
+* {
+  font-family: var(--font-family), sans-serif;
 }

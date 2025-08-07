@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
@@ -19,7 +19,7 @@ export class SignUp {
   errors: { field: string; message: string }[] = [];
   isSigningUp = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -41,16 +41,16 @@ export class SignUp {
     }
 
     this.authService.signUp(this.form.value).subscribe({
-      next: (res) => {
+      next: () => {
         this.isSigningUp = false;
         this.form.reset();
         this.errors = [];
-        console.log('Registered!', res)
         void this.router.navigate([environment.frontendUrls.signin]);
       },
       error: (err) => {
         this.isSigningUp = false;
         this.errors = err.error?.errors || [{field: 'unknown', message: 'Unexpected error.'}];
+        this.cdr.detectChanges();
       }
     });
   }

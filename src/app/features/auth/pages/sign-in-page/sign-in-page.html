@@ -32,12 +32,5 @@
     <button type="submit" [disabled]="form.invalid">Sign In</button>
   </form>
 
-  @if (errors.length > 0) {
-    <div class="error-messages">
-      <h3>Whoops, something went wrong:</h3>
-      @for (error of errors; track error) {
-        <p><strong>{{ error.field }}</strong>: {{ error.message }}</p>
-      }
-    </div>
-  }
+  <app-auth-error-message-component [errors]="errors"/>
 </div>

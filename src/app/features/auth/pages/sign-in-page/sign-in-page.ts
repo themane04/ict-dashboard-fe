@@ -1,15 +1,17 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../core/consts/environment';
+import {AuthErrorMessageComponent} from '../../components/auth-error-message-component/auth-error-message-component';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthErrorMessageComponent
   ],
   templateUrl: './sign-in-page.html',
   styleUrls: ['./sign-in-page.scss', '../sign-up-page/sign-up-page.scss']
@@ -20,7 +22,7 @@ export class SignIn {
   errors: { field: string; message: string }[] = [];
   isSigningIn = false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', Validators.required],
@@ -50,6 +52,7 @@ export class SignIn {
       error: (err) => {
         this.isSigningIn = false;
         this.errors = err.error?.errors || [{field: 'unknown', message: 'Unexpected error.'}];
+        this.cdr.detectChanges();
       }
     });
   }
