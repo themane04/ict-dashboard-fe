@@ -1,0 +1,22 @@
+<header class="dashboard-header">
+  <div class="logo-container">
+    <img
+      ngSrc="assets/images/logo/post_logo.svg"
+      alt="Post Logo"
+      class="post-logo"
+      width="100"
+      height="100"
+    />
+  </div>
+
+  <div class="profile-container">
+    <img
+      [ngSrc]="profileImage"
+      alt="Profile Picture"
+      class="profile-pic"
+      width="100"
+      height="100"
+    />
+    <span class="profile-name">{{ user()?.username }}</span>
+  </div>
+</header>

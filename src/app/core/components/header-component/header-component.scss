@@ -1,0 +1,40 @@
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--color-post-yellow);
+  border-bottom: 3px solid var(--color-post-black);
+}
+
+.logo-container .post-logo {
+  height: 70px;
+  transition: transform 0.3s ease;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.profile-container:hover, .post-logo:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--color-post-red);
+  object-fit: cover;
+}
+
+.profile-name {
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  color: var(--color-post-black);
+  font-weight: 600;
+}
