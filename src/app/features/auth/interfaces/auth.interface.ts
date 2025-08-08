@@ -1,5 +1,16 @@
-﻿export interface SignInResponse {
-  user: SignUpResponse;
+﻿export interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: string;
+  profile: UserProfile;
+}
+
+export interface UserProfile {
+  pictureUrl: string;
+  birthday: string;
+  bio: string;
 }
 
 export interface SignInRequest {
@@ -15,6 +26,8 @@ export interface SignUpRequest {
 
 export interface SignUpResponse {
   id: number;
+  firstName: string;
+  lastName: string;
   username: string;
   email: string;
   role: string;

@@ -1,10 +1,8 @@
 ﻿import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {SignInRequest, SignInResponse, SignUpRequest, SignUpResponse} from '../interfaces/auth.interface';
-import {firstValueFrom, Observable} from 'rxjs';
+import {SignInRequest, SignUpRequest, User} from '../interfaces/auth.interface';
+import {map, Observable} from 'rxjs';
 import {environment} from '../../../core/consts/environment';
-import {setUser} from '../signals/auth.signal';
-import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,44 +10,30 @@ import {Router} from '@angular/router';
 export class AuthService {
   backendUrl = environment.backendApiUrl;
   backendAuthEndpoints = environment.backendEndpoints.auth;
-  frontendUrl = environment.frontendUrls;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
-  signIn(data: SignInRequest): Observable<SignInResponse> {
-    return this.http.post<SignInResponse>(
+  signIn(data: SignInRequest): Observable<void> {
+    return this.http.post<void>(
       `${this.backendUrl}${this.backendAuthEndpoints.signin}`,
       data,
+      {withCredentials: true, observe: 'response'}
+    ).pipe(map(() => void 0));
+  }
+
+  signUp(data: SignUpRequest): Observable<void> {
+    return this.http.post<void>(
+      `${this.backendUrl}${this.backendAuthEndpoints.signup}`,
+      data,
+      {observe: 'response'}
+    ).pipe(map(() => void 0));
+  }
+
+  getMe(): Observable<User> {
+    return this.http.get<User>(
+      `${this.backendUrl}${this.backendAuthEndpoints.me}`,
       {withCredentials: true}
     );
-  }
-
-  signUp(data: SignUpRequest): Observable<SignUpResponse> {
-    return this.http.post<SignUpResponse>(
-      `${this.backendUrl}${this.backendAuthEndpoints.signup}`,
-      data
-    );
-  }
-
-  async initAuth(): Promise<void> {
-    try {
-      const response = await firstValueFrom(
-        this.http.get<SignUpResponse>(`${this.backendUrl}${this.backendAuthEndpoints.me}`, {
-          withCredentials: true
-        })
-      );
-
-      setUser(response);
-    } catch {
-      setUser(null);
-
-      const currentUrl = this.router.url;
-      const isOnAuthPage = [this.frontendUrl.signin, this.frontendUrl.signup].includes(currentUrl);
-
-      if (!isOnAuthPage) {
-        void this.router.navigate([this.frontendUrl.signin]);
-      }
-    }
   }
 }

@@ -1,19 +1,11 @@
 ﻿import {computed, signal} from '@angular/core';
-import {SignUpResponse} from '../interfaces/auth.interface';
+import {User} from '../interfaces/auth.interface';
 
-const _user = signal<SignUpResponse | null>(null);
-
-export const user = _user;
-
+export const _user = signal<User | null>(null);
+export const _authInitialized = signal(false);
 export const isLoggedIn = computed(() => !!_user());
-export const isCoach = computed(() => _user()?.role === 'Coach');
 
-export const userRole = computed(() => _user()?.role ?? null);
-
-const _authInitialized = signal(false);
-export const authInitialized = _authInitialized.asReadonly();
-
-export const setUser = (newUser: SignUpResponse | null) => {
-  _user.set(newUser)
+export const setUser = (u: User | null) => {
+  _user.set(u);
   _authInitialized.set(true);
 };

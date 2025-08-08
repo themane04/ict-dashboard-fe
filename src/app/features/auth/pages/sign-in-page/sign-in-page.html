@@ -1,5 +1,5 @@
 <div class="sign-up-form">
-  <h2>Log Into Your Account</h2>
+  <h2>Sign In</h2>
 
   <form [formGroup]="form" (submit)="onSubmit()">
     <div class="form-group">
@@ -22,12 +22,10 @@
       />
     </div>
 
-    @if (environment.config.allowSignUp) {
-      <div class="signup-switch">
-        <span>Don't have an account?</span>
-        <button type="button" (click)="goToSignUp()">Sign Up</button>
-      </div>
-    }
+    <div class="signup-switch">
+      <span>Don't have an account?</span>
+      <button type="button" (click)="goToSignUp()">Sign Up</button>
+    </div>
 
     <button type="submit" [disabled]="form.invalid">Sign In</button>
   </form>

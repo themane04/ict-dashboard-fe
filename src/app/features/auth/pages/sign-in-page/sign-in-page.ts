@@ -4,6 +4,8 @@ import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../core/consts/environment';
 import {AuthErrorMessageComponent} from '../../components/auth-error-message-component/auth-error-message-component';
+import {switchMap, tap} from 'rxjs';
+import {setUser} from '../../signals/auth.signal';
 
 @Component({
   selector: 'app-sign-in',
@@ -42,7 +44,10 @@ export class SignIn {
       return;
     }
 
-    this.authService.signIn(this.form.value).subscribe({
+    this.authService.signIn(this.form.value).pipe(
+      switchMap(() => this.authService.getMe()),
+      tap((user) => setUser(user))
+    ).subscribe({
       next: () => {
         this.isSigningIn = false;
         this.form.reset();
@@ -51,9 +56,10 @@ export class SignIn {
       },
       error: (err) => {
         this.isSigningIn = false;
-        this.errors = err.error?.errors || [{field: 'unknown', message: 'Unexpected error.'}];
+        this.errors = err.error?.errors || [{field: 'credentials', message: 'Invalid email or password.'}];
         this.cdr.detectChanges();
       }
     });
   }
+
 }

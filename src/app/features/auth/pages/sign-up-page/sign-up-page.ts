@@ -21,9 +21,13 @@ export class SignUp {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private cdr: ChangeDetectorRef) {
     this.form = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      role: ['', Validators.required],
       password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
     });
   }
 
