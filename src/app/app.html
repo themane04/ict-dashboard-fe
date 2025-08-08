@@ -1,1 +1,8 @@
-<router-outlet/>
+@if (isLoggedIn()) {
+  <app-header-component />
+  <main class="app-content" [style.margin-left.px]="contentOffset()">
+    <router-outlet/>
+  </main>
+} @else {
+  <router-outlet/>
+}

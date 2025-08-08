@@ -24,12 +24,3 @@ export interface SignUpRequest {
   email: string;
   password: string;
 }
-
-export interface SignUpResponse {
-  id: number;
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-  role: string;
-}

@@ -1,5 +1,14 @@
-<header class="dashboard-header">
-  <div class="logo-container">
+<header class="dashboard-header" [class.expanded]="expanded()">
+  <button
+    class="toggle-btn"
+    (click)="toggleSidebar($event)"
+    [style.left.px]="expanded() ? environment.sidebarExpandedWidth :environment.sidebarCollapsedWidth"
+    [attr.aria-expanded]="expanded()"
+    type="button">
+    <span class="chevron" [class.rotated]="expanded()">›</span>
+  </button>
+
+  <div class="logo-container" (click)="goToDashboard()">
     <img
       ngSrc="assets/images/logo/post_logo.svg"
       alt="Post Logo"
@@ -7,16 +16,12 @@
       width="100"
       height="100"
     />
+    <span class="logo-text">ICT Dashboard</span>
   </div>
 
-  <div class="profile-container">
-    <img
-      [ngSrc]="profileImage"
-      alt="Profile Picture"
-      class="profile-pic"
-      width="100"
-      height="100"
-    />
+  <div class="profile-container" (click)="goToProfile()">
+    <img [ngSrc]="profileImage" alt="{{user()?.firstName}} {{user()?.lastName}}" class="profile-pic" width="100"
+         height="100"/>
     <span class="profile-name">{{ user()?.username }}</span>
   </div>
 </header>

@@ -1,0 +1,67 @@
+<section class="profile-page">
+  <header class="profile-header">
+    <div class="avatar-wrap">
+      <img
+        [ngSrc]="profileImage"
+        width="140"
+        height="140"
+        alt="Profile picture of {{ user()?.firstName }} {{ user()?.lastName }}"
+        class="avatar"
+      />
+      <button class="btn btn-outline" disabled>Change photo</button>
+    </div>
+
+    <div class="id-wrap">
+      <h1 class="name">
+        {{ user()?.firstName }} {{ user()?.lastName }}
+      </h1>
+      <div class="meta">
+        <span class="chip role">{{ user()?.role }}</span>
+        <span class="chip username">&#64;{{ user()?.username }}</span>
+        <span class="chip id">ID: {{ user()?.id }}</span>
+      </div>
+      <div class="contact">
+        <a class="link" href="mailto:{{ user()?.email }}">{{ user()?.email }}</a>
+      </div>
+      <div class="actions">
+        <button class="btn" disabled>Edit profile</button>
+        <button class="btn btn-light" disabled>Edit details</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="profile-grid">
+    <div class="card">
+      <h2>About</h2>
+      <p class="bio">
+        {{ user()?.profile?.bio || 'No bio yet.' }}
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Personal</h2>
+      <ul class="list">
+        <li>
+          <span class="label">Birthday</span>
+          <span class="value">{{ user()?.profile?.birthday || '—' }}</span>
+        </li>
+        <li>
+          <span class="label">First name</span>
+          <span class="value">{{ user()?.firstName }}</span>
+        </li>
+        <li>
+          <span class="label">Last name</span>
+          <span class="value">{{ user()?.lastName }}</span>
+        </li>
+        <li>
+          <span class="label">Username</span>
+          <span class="value">&#64;{{ user()?.username }}</span>
+        </li>
+        <li>
+          <span class="label">Role</span>
+          <span class="value">{{ user()?.role }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
