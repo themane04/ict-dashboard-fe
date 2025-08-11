@@ -18,6 +18,13 @@ export class AuthService {
     return this.http.post<void>(`${this.backendUrl}${this.backendAuthEndpoints.signout}`, {}, {withCredentials: true});
   }
 
+  getMe(): Observable<User> {
+    return this.http.get<User>(
+      `${this.backendUrl}${this.backendAuthEndpoints.me}`,
+      {withCredentials: true}
+    );
+  }
+
   signIn(data: SignInRequest): Observable<void> {
     return this.http.post<void>(
       `${this.backendUrl}${this.backendAuthEndpoints.signin}`,
@@ -32,12 +39,5 @@ export class AuthService {
       data,
       {observe: 'response'}
     ).pipe(map(() => void 0));
-  }
-
-  getMe(): Observable<User> {
-    return this.http.get<User>(
-      `${this.backendUrl}${this.backendAuthEndpoints.me}`,
-      {withCredentials: true}
-    );
   }
 }
