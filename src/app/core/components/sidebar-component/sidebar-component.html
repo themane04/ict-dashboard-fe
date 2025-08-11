@@ -15,13 +15,14 @@
       class="post-logo"
       width="100"
       height="100"
+      priority
     />
     <span class="logo-text">ICT Dashboard</span>
   </div>
 
   <div class="profile-container" (click)="goToProfile()">
     <img [ngSrc]="profileImage" alt="{{user()?.firstName}} {{user()?.lastName}}" class="profile-pic" width="100"
-         height="100"/>
+         height="100" priority/>
     <span class="profile-name">{{ user()?.username }}</span>
   </div>
 </header>
