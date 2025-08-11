@@ -79,7 +79,7 @@
   border-radius: .5rem;
   background: var(--color-button-bg);
   color: #fff;
-  cursor: not-allowed; /* design-only for now */
+  cursor: pointer;
 }
 .btn:hover { background: var(--color-button-hover); }
 .btn-light {

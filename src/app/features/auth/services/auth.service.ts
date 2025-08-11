@@ -14,6 +14,10 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  signOut() {
+    return this.http.post<void>(`${this.backendUrl}${this.backendAuthEndpoints.signout}`, {}, {withCredentials: true});
+  }
+
   signIn(data: SignInRequest): Observable<void> {
     return this.http.post<void>(
       `${this.backendUrl}${this.backendAuthEndpoints.signin}`,
