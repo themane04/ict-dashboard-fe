@@ -5,6 +5,7 @@ import {environment} from '../../consts/environment';
 import {Router} from '@angular/router';
 import {sidebarExpanded} from '../../signals/layout.signal';
 import {MatIcon} from '@angular/material/icon';
+import {getProfileImage} from '../../../features/auth/helpers/auth.helper';
 
 @Component({
   selector: 'app-sidebar-component',
@@ -25,7 +26,7 @@ export class AppSidebarComponent {
   }
 
   get profileImage(): string {
-    return this.user()?.profile?.pictureUrl || environment.config.profilePlaceholderUrl;
+    return getProfileImage(this.user());
   }
 
   toggleSidebar(e: Event) {

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {_user} from '../../../auth/signals/auth.signal';
 import {NgOptimizedImage} from '@angular/common';
-import {environment} from '../../../../core/consts/environment';
+import {getProfileImage} from '../../../auth/helpers/auth.helper';
 
 @Component({
   selector: 'app-own-profile-page',
@@ -15,6 +15,6 @@ export class OwnProfilePage {
   user = _user;
 
   get profileImage(): string {
-    return this.user()?.profile?.pictureUrl || environment.config.profilePlaceholderUrl;
+    return getProfileImage(this.user());
   }
 }
