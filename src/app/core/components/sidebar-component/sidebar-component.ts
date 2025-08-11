@@ -4,11 +4,13 @@ import {_user} from '../../../features/auth/signals/auth.signal';
 import {environment} from '../../consts/environment';
 import {Router} from '@angular/router';
 import {sidebarExpanded} from '../../signals/layout.signal';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-sidebar-component',
   imports: [
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatIcon,
   ],
   templateUrl: './sidebar-component.html',
   styleUrl: './sidebar-component.scss'

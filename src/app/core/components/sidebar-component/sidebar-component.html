@@ -2,10 +2,10 @@
   <button
     class="toggle-btn"
     (click)="toggleSidebar($event)"
-    [style.left.px]="expanded() ? environment.sidebarExpandedWidth :environment.sidebarCollapsedWidth"
+    [style.left.px]="expanded() ? environment.sidebarExpandedWidth : environment.sidebarCollapsedWidth"
     [attr.aria-expanded]="expanded()"
     type="button">
-    <span class="chevron" [class.rotated]="expanded()">›</span>
+    <mat-icon [class.rotated]="expanded()">chevron_right</mat-icon>
   </button>
 
   <div class="logo-container" (click)="goToDashboard()">

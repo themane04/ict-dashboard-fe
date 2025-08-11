@@ -42,12 +42,11 @@
   transition: left .2s ease;
 }
 
-.chevron {
-  display: inline-block;
-  transition: transform .2s ease;
+.toggle-btn .mat-icon {
+  transition: transform 0.3s ease;
 }
 
-.chevron.rotated {
+.toggle-btn .mat-icon.rotated {
   transform: rotate(180deg);
 }
 
