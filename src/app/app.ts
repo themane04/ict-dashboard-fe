@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {AppHeaderComponent} from './core/components/header-component/header-component';
 import {contentOffset} from './core/signals/layout.signal';
 import {isLoggedIn} from './features/auth/signals/auth.signal';
+import {AppSidebarComponent} from './core/components/sidebar-component/sidebar-component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AppHeaderComponent],
+  imports: [RouterOutlet, AppSidebarComponent],
   templateUrl: './app.html',
 })
 export class App {

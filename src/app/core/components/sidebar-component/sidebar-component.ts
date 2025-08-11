@@ -6,14 +6,14 @@ import {Router} from '@angular/router';
 import {sidebarExpanded} from '../../signals/layout.signal';
 
 @Component({
-  selector: 'app-header-component',
+  selector: 'app-sidebar-component',
   imports: [
     NgOptimizedImage
   ],
-  templateUrl: './header-component.html',
-  styleUrl: './header-component.scss'
+  templateUrl: './sidebar-component.html',
+  styleUrl: './sidebar-component.scss'
 })
-export class AppHeaderComponent {
+export class AppSidebarComponent {
   user = _user;
   url = environment.frontendUrls;
   expanded = sidebarExpanded;
