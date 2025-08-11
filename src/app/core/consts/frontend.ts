@@ -2,5 +2,6 @@
   profile: 'profile',
   dashboard: 'dashboard',
   signin: 'signin',
-  signup: 'signup'
+  signup: 'signup',
+  home: '/'
 }
